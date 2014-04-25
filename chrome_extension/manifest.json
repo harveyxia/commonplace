@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+
+  "name": "Commonplace",
+  "description": "Save quotes with key shortcut.",
+  "version": "0.1",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+
+  "background": {
+    // important: load firebase first
+      "scripts": ["firebase.js", "background.js"],
+      "persistent": true
+    },
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["contentscript.js"]
+    }
+  ],
+  "content_security_policy": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com; object-src 'self'"
+}
