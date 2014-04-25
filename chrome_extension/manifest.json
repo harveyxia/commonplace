@@ -12,7 +12,7 @@
 
   "background": {
     // important: load firebase first
-      "scripts": ["firebase.js", "background.js"],
+      "scripts": ["firebase.js", "firebase-simple-login.js", "background.js"],
       "persistent": true
     },
   "content_scripts": [

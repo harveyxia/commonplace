@@ -1,17 +1,23 @@
 function login() {
-  console.log("poop");
-  alert("poop");
-  // chrome.runtime.sendMessage({text: text}, function(response) {
-  //     console.log(response.farewell);
+    console.log("login");
+  var email = document.getElementById("email").value;
+  var password = document.getElementById("password").value;
+
+  // chrome.extension.getBackgroundPage().auth.createUser(email, password,
+  //   function(error, user) {
+  //   if (!error) {
+  //     console.log('User Id: ' + user.uid + ', Email: ' + user.email);
+  //   } else {
+  //     console.log(error);
+  //   }
   // });
+
+  chrome.extension.getBackgroundPage().auth.login('password', {
+    email: email,
+    password: password,
+    rememberMe: true,
+    debug: true
+  });
 }
 
-// document.forms[0].onsubmit = function(e) {
-//     var email = document.getElementById("email").value;
-//     var password = document.getElementById("password").value;
-
-//     // chrome.runtime.sendMessage({email: email, password: password},
-//     //     function(response) {
-//     //         console.log(response.farewell);
-//     // });
-// };
+document.getElementById("submit").addEventListener('click', login, false);
