@@ -11,7 +11,7 @@
 
   "background": {
     // important: load firebase first
-      "scripts": ["firebase.js", "commonplace.js"],
+      "scripts": ["firebase.js", "background.js"],
       "persistent": true
     },
   "content_scripts": [
