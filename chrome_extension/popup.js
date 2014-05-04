@@ -39,7 +39,38 @@ function login() {
       rememberMe: true,
       debug: true
     });
+    // auth.login('google', {
+    //   rememberMe: true,
+    // });
   }
+}
+
+function initUser(url, email) {
+  userRef = chrome.extension.getBackgroundPage().createRef(url);
+  userRef.set({email: email});
+}
+
+function signup() {
+  var email = document.getElementById("email").value;
+  var password = document.getElementById("password").value;
+
+  auth.createUser(email, password,
+    function(error, user) {
+    if (!error) {
+      auth.login('password', {
+        email: email,
+        password: password,
+        rememberMe: true,
+        debug: true
+      });
+
+      userURL = "https://popping-fire-7822.firebaseio.com" + "/users/" + user.uid
+      initUser(userURL, email);
+      console.log('User Id: ' + user.uid + ', Email: ' + user.email);
+    } else {
+      console.log(error);
+    }
+  });
 }
 
 function logout() {
@@ -49,8 +80,10 @@ function logout() {
 if (!user) {
   $('#container').html("Email: <input type='text' name='email' id='email'/>"+
       "Password: <input type='password' name='password' id='password'/>"+
-      "<button id='submit'> Submit </button>");
-  document.getElementById("submit").addEventListener('click', login, false);
+      "<button id='login'> Login </button>"+
+      "<button id='signup'> Sign Up </button>");
+  document.getElementById("login").addEventListener('click', login, false);
+  document.getElementById("signup").addEventListener('click', signup, false);
 } else {
   $('#container').html("<button id='submit'> Logout </button>");
   document.getElementById("submit").addEventListener('click', logout, false);
