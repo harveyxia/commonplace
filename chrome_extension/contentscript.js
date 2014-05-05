@@ -9,11 +9,11 @@ function getSelectedText() {
 function hotkey(e) {
   if (e.ctrlKey && e.keyCode == 69) {
     text = getSelectedText();
-    // console.log(text);
-    
-    chrome.runtime.sendMessage({text: text}, function(response) {
-        console.log(response.farewell);
-    });
+    if (text) {
+        chrome.runtime.sendMessage({text: text}, function(response) {
+            console.log(response.farewell);
+        });
+    }
   }
 };
 
