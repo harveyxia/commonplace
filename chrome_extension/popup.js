@@ -23,15 +23,6 @@ function login() {
   var email = document.getElementById("email").value;
   var password = document.getElementById("password").value;
 
-  // chrome.extension.getBackgroundPage().auth.createUser(email, password,
-  //   function(error, user) {
-  //   if (!error) {
-  //     console.log('User Id: ' + user.uid + ', Email: ' + user.email);
-  //   } else {
-  //     console.log(error);
-  //   }
-  // });
-
   if (!user) {
     auth.login('password', {
       email: email,
@@ -66,7 +57,6 @@ function signup() {
 
       userURL = "https://popping-fire-7822.firebaseio.com" + "/users/" + user.uid
       initUser(userURL, email);
-      console.log('User Id: ' + user.uid + ', Email: ' + user.email);
     } else {
       console.log(error);
     }

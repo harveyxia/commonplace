@@ -10,6 +10,7 @@ var user;
 
 // Reference to the user's JSON
 var userRef;
+var quoteRef;
 
 var auth = new FirebaseSimpleLogin(dataRef, function(error, usr) {
   if (error) {          // an error occurred while attempting login
@@ -18,19 +19,28 @@ var auth = new FirebaseSimpleLogin(dataRef, function(error, usr) {
     user = null;
   } else if (usr) {     // user authenticated with Firebase
     user = usr;
-    userURL = "https://popping-fire-7822.firebaseio.com" + "/users/" + user.uid
-    console.log(userURL)
+    var userURL = "https://popping-fire-7822.firebaseio.com/users/" + user.uid
+    var quoteURL = userURL + '/quotes'
     userRef = new Firebase(userURL);
+    quoteRef = new Firebase(quoteURL);
   } else {              // user is logged out
     user = null;
     console.log('logged out');
   }
 });
 
+function addQuote(quote) {
+  quoteRef.push({text: quote}, function(error) {
+    if (error) {
+      console.log(error);
+    }
+  });
+};
+
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if (request.text) {
         sendResponse({farewell: request.text});
-        dataRef.set(request.text);
+        addQuote(request.text);
     }
   });
