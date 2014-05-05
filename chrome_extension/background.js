@@ -29,11 +29,14 @@ var auth = new FirebaseSimpleLogin(dataRef, function(error, usr) {
   }
 });
 
-function addQuote(quote) {
-  quoteRef.push({text: quote}, function(error) {
-    if (error) {
-      console.log(error);
-    }
+function addQuote(data) {
+  quoteRef.push({text: data.text,
+                 created_at: data.created_at,
+                 url: data.url},
+    function(error) {
+      if (error) {
+        console.log(error);
+      }
   });
 };
 
@@ -41,6 +44,6 @@ chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if (request.text) {
         sendResponse({farewell: request.text});
-        addQuote(request.text);
+        addQuote(request);
     }
   });
