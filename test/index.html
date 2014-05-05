@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html ng-app='myApp'>
 
   <head>
     <meta charset="utf-8">
     <title>Login to Commonplace</title>
-    <script src="https://cdn.firebase.com/v0/firebase.js"></script>
-    <script src='https://cdn.firebase.com/js/simple-login/1.3.2/firebase-simple-login.js'> </script>
-    <script src="index.js"></script>
+    <!-- <script src="https://cdn.firebase.com/v0/firebase.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular.min.js"></script>
+    <script src="https://cdn.firebase.com/js/client/1.0.6/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js"></script>
+    <script src="app.js"></script>
   </head>
 
-  <body>
-    <div>
-      Email: <input type="text" name="email" id="email"/>
-      Password: <input type="password" name="password" id="password"/>
-      <button onclick="login()" id="submit"> Submit </button>
+  <body ng-controller='myController'>
+    <div id='quotesDiv'>
+      <div ng-repeat='quote in quotes'>{{quote}}</div>
     </div>
 
   </body>
