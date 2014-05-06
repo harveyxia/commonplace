@@ -2,12 +2,28 @@ var dataRef = new Firebase('https://popping-fire-7822.firebaseio.com');
 var app = angular.module('app', ['ngRoute','firebase']);
 
 app.config(function ($routeProvider) {
+  $routeProvider.when('/',  {
+      templateUrl: 'home.html',
+      controller: ''
+    });
   $routeProvider.when('/account',  {
       templateUrl: 'account.html',
       controller: 'loginController'
-    }
-    )
+    });
+  $routeProvider.when('/contact',  {
+      templateUrl: 'contact.html',
+      controller: ''
+    });
 });
+
+// views controller
+app.controller('viewsController', ['$scope', '$location',
+  function($scope, $location) {
+    $scope.changeView = function(view) {
+      $location.path(view);
+      console.log($location.path());
+    };
+  }]);
 
 
 // SimpleLogin
