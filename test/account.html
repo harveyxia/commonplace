@@ -4,11 +4,19 @@
 </span>
 
 <form href="#" ng-hide="auth.user">
-  <input type='text' ng-model='loginEmail' placeholder='Email' required>
-  <input type='password' ng-model='loginPassword' placeholder='Password' required>
-  <a href='javaScript:void(0);' ng-click="login()">
-    Login
-  </a>
+  <ul>
+    <li>
+      <label for='login-email'>Email Address</label>
+      <input id='login-email' ng-model='loginEmail' placeholder='Email' tabindex="1" required>
+    </li>
+    <li>
+      <label for='login-password'>Email Address</label>
+      <input id='login-password' type='password' ng-model='loginPassword' tabindex="1" placeholder='Password' required>
+    </li>
+    <a href='javaScript:void(0);' ng-click="login()">
+      Login
+    </a>
+  </ul>
   <p ng-show='loginMessage'>{{loginMessage}}</p>
 </form>
 

@@ -1,20 +1,13 @@
 var dataRef = new Firebase('https://popping-fire-7822.firebaseio.com');
 var app = angular.module('app', ['ngRoute','firebase', 'ngAnimate']);
 
-app.config(function ($routeProvider) {
-  $routeProvider.when('/',  {
-      templateUrl: 'home.html',
-      controller: ''
-    });
-  $routeProvider.when('/account',  {
-      templateUrl: 'account.html',
-      controller: 'accountController'
-    });
-  $routeProvider.when('/contact',  {
-      templateUrl: 'contact.html',
-      controller: ''
-    });
-});
+app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+  $routeProvider.when('/',  {templateUrl: 'home.html', controller: '' });
+  $routeProvider.when('/account',  {templateUrl: 'account.html', controller: 'accountController'});
+  $routeProvider.when('/contact',  {templateUrl: 'contact.html', controller: ''});
+
+  // $locationProvider.html5Mode(true); // remove '#' from URLs
+}]);
 
 // views controller
 app.controller('viewsController', ['$scope', '$location',
