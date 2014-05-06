@@ -7,8 +7,11 @@
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,300' rel='stylesheet' type='text/css'>
     <link href='index.css' rel='stylesheet' type='text/css' >
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-route.js"></script>
+    <script src="//code.angularjs.org/1.2.15/angular-animate.js"></script>
+    
     <script src="https://cdn.firebase.com/js/client/1.0.6/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js"></script>
     <script src="https://cdn.firebase.com/js/simple-login/1.4.1/firebase-simple-login.js"></script>
@@ -17,13 +20,8 @@
 
   <body>
     <nav ng-include="'navbar.html'"></nav>
-    <div id='content' ng-view>
-      
-      <!-- <div id='quotesDiv' ng-controller='quoteController'>
-        <div ng-show='auth.user' ng-include=" 'account.html' "></div>
-        <div ng-hide='auth.user'> Not logged in. </div>
-      </div> -->
-
+    <div class='view-animate-container'>
+      <div id='content' ng-view class='view-animate'></div>
     </div>
   </body>
 </html>

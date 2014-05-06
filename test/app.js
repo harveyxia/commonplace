@@ -1,5 +1,5 @@
 var dataRef = new Firebase('https://popping-fire-7822.firebaseio.com');
-var app = angular.module('app', ['ngRoute','firebase']);
+var app = angular.module('app', ['ngRoute','firebase', 'ngAnimate']);
 
 app.config(function ($routeProvider) {
   $routeProvider.when('/',  {
@@ -8,7 +8,7 @@ app.config(function ($routeProvider) {
     });
   $routeProvider.when('/account',  {
       templateUrl: 'account.html',
-      controller: 'loginController'
+      controller: 'accountController'
     });
   $routeProvider.when('/contact',  {
       templateUrl: 'contact.html',
@@ -21,13 +21,12 @@ app.controller('viewsController', ['$scope', '$location',
   function($scope, $location) {
     $scope.changeView = function(view) {
       $location.path(view);
-      console.log($location.path());
     };
   }]);
 
 
-// SimpleLogin
-app.controller('loginController', ['$rootScope', '$scope', '$firebase', '$firebaseSimpleLogin',
+// account controller
+app.controller('accountController', ['$rootScope', '$scope', '$firebase', '$firebaseSimpleLogin',
   function($rootScope, $scope, $firebase, $firebaseSimpleLogin) {
 
     $scope.auth = $firebaseSimpleLogin(dataRef);
@@ -37,7 +36,7 @@ app.controller('loginController', ['$rootScope', '$scope', '$firebase', '$fireba
           email: $scope.loginEmail,
           password: $scope.loginPassword
         }).then(function(user) {
-          $rootScope.$broadcast('loginEvent');
+          getQuotes();
           $scope.loginMessage = 'Logged in as: ' + user.uid;
         }, function(error) {
           $scope.loginMessage = 'Login failed: ' + error;
@@ -46,17 +45,8 @@ app.controller('loginController', ['$rootScope', '$scope', '$firebase', '$fireba
 
     $scope.logout = function() {
       $scope.auth.$logout();
-      $rootScope.$broadcast('logoutEvent');
+      $scope.quotes = null;
     };
-
-  }
-]);
-
-// retrieves quotes
-app.controller('quoteController', ['$rootScope','$scope', '$firebase', '$firebaseSimpleLogin',
-  function($rootScope, $scope, $firebase, $firebaseSimpleLogin) {
-
-    $scope.auth = $firebaseSimpleLogin(dataRef);
 
     var getQuotes = function() {
       $scope.auth.$getCurrentUser().then(function(user) {
@@ -69,14 +59,6 @@ app.controller('quoteController', ['$rootScope','$scope', '$firebase', '$firebas
         console.log(error);
       });
     };
-    
     getQuotes();
-
-    $scope.$on('logoutEvent', function() {
-      $scope.quotes = null;
-    });
-    $scope.$on('loginEvent', function() {
-      getQuotes();
-    });
   }
 ]);
