@@ -15,7 +15,7 @@
   <body >
     <div id='login' ng-controller='loginController'>
       <span ng-show='auth.user'>
-        {{auth.user.email}} | <a href="#" ng-click="auth.$logout()">Logout</a>
+        {{auth.user.email}} | <a href="#" ng-click="logout()">Logout</a>
         <p ng-show='loginMessage'>{{loginMessage}}</p>
       </span>
       <form href="#" ng-hide="auth.user">
@@ -30,7 +30,6 @@
 
 
     <div id='quotesDiv' ng-controller='quoteController'>
-      <a id='click' href="#" ng-click="getQuotes()">Click</a>
       <div ng-repeat='quote in quotes'>{{quote.text}}</div>
     </div>
   </body>

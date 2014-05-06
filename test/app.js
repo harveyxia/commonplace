@@ -3,8 +3,8 @@ var myApp = angular.module('myApp', ['firebase']);
 
 
 // SimpleLogin
-myApp.controller('loginController', ['$scope', '$firebase', '$firebaseSimpleLogin',
-  function($scope, $firebase, $firebaseSimpleLogin) {
+myApp.controller('loginController', ['$rootScope', '$scope', '$firebase', '$firebaseSimpleLogin',
+  function($rootScope, $scope, $firebase, $firebaseSimpleLogin) {
 
     $scope.auth = $firebaseSimpleLogin(dataRef);
 
@@ -13,28 +13,46 @@ myApp.controller('loginController', ['$scope', '$firebase', '$firebaseSimpleLogi
           email: $scope.loginEmail,
           password: $scope.loginPassword
         }).then(function(user) {
-          // bind user to scope to make available to other controllers
+          $rootScope.$broadcast('loginEvent');
           $scope.loginMessage = 'Logged in as: ' + user.uid;
         }, function(error) {
           $scope.loginMessage = 'Login failed: ' + error;
         });
     };
+
+    $scope.logout = function() {
+      $scope.auth.$logout();
+      $rootScope.$broadcast('logoutEvent');
+    };
+
   }
 ]);
 
 // retrieves quotes
-myApp.controller('quoteController', ['$scope', '$firebase', '$firebaseSimpleLogin',
-  function($scope, $firebase, $firebaseSimpleLogin) {
+myApp.controller('quoteController', ['$rootScope','$scope', '$firebase', '$firebaseSimpleLogin',
+  function($rootScope, $scope, $firebase, $firebaseSimpleLogin) {
 
     $scope.auth = $firebaseSimpleLogin(dataRef);
 
-    console.log($scope.auth.user);
-
-    $scope.getQuotes = function() {
-      var userRef = new Firebase('https://popping-fire-7822.firebaseio.com/users/' +
-        $scope.auth.user.uid + '/quotes');
-      $scope.quotes = $firebase(userRef);
-      console.log($scope.auth.user.uid);
+    var getQuotes = function() {
+      $scope.auth.$getCurrentUser().then(function(user) {
+        if (user) {
+          var userRef = new Firebase('https://popping-fire-7822.firebaseio.com/users/' +
+            user.uid + '/quotes');
+          $scope.quotes = $firebase(userRef);
+        };
+      }, function(error) {
+        console.log(error);
+      });
     };
+    
+    getQuotes();
+
+    $scope.$on('logoutEvent', function() {
+      $scope.quotes = null;
+    });
+    $scope.$on('loginEvent', function() {
+      getQuotes();
+    });
   }
 ]);
