@@ -1,9 +1,11 @@
 var dataRef = new Firebase('https://popping-fire-7822.firebaseio.com');
-var myApp = angular.module('myApp', ['firebase']);
+var app = angular.module('app', ['firebase']);
+
+
 
 
 // SimpleLogin
-myApp.controller('loginController', ['$rootScope', '$scope', '$firebase', '$firebaseSimpleLogin',
+app.controller('loginController', ['$rootScope', '$scope', '$firebase', '$firebaseSimpleLogin',
   function($rootScope, $scope, $firebase, $firebaseSimpleLogin) {
 
     $scope.auth = $firebaseSimpleLogin(dataRef);
@@ -29,7 +31,7 @@ myApp.controller('loginController', ['$rootScope', '$scope', '$firebase', '$fire
 ]);
 
 // retrieves quotes
-myApp.controller('quoteController', ['$rootScope','$scope', '$firebase', '$firebaseSimpleLogin',
+app.controller('quoteController', ['$rootScope','$scope', '$firebase', '$firebaseSimpleLogin',
   function($rootScope, $scope, $firebase, $firebaseSimpleLogin) {
 
     $scope.auth = $firebaseSimpleLogin(dataRef);

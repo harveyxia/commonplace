@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app='myApp'>
+<html ng-app='app'>
 
   <head>
     <meta charset="utf-8">
@@ -18,30 +18,12 @@
     <nav ng-include="'navbar.html'"></nav>
     <div id='content'>
 
-      <div id='login' ng-controller='loginController'>
-
-        <span ng-show='auth.user'>
-          {{auth.user.email}} | <a href="#" ng-click="logout()">Logout</a>
-          <p ng-show='loginMessage'>{{loginMessage}}</p>
-        </span>
-
-        <form href="#" ng-hide="auth.user">
-          <input type='text' ng-model='loginEmail' placeholder='Email' required>
-          <input type='password' ng-model='loginPassword' placeholder='Password' required>
-          <a href="#" ng-click="login()">
-            Login
-          </a>
-          <p ng-show='loginMessage'>{{loginMessage}}</p>
-        </form>
-
-      </div>
-
-
-      <div id='quotesDiv' ng-controller='quoteController'>
+      
+      <!-- <div id='quotesDiv' ng-controller='quoteController'>
         <div ng-show='auth.user' ng-include=" 'account.html' "></div>
         <div ng-hide='auth.user'> Not logged in. </div>
-      </div>
-      
+      </div> -->
+
     </div>
   </body>
 </html>
