@@ -4,6 +4,9 @@
   <head>
     <meta charset="utf-8">
     <title>WordSpark</title>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Sorts+Mill+Goudy' rel='stylesheet' type='text/css'>
+    <link href='index.css' rel='stylesheet' type='text/css' >
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular.min.js"></script>
     <script src="https://cdn.firebase.com/js/client/1.0.6/firebase.js"></script>
@@ -12,25 +15,33 @@
     <script src="app.js"></script>
   </head>
 
-  <body >
-    <div id='login' ng-controller='loginController'>
-      <span ng-show='auth.user'>
-        {{auth.user.email}} | <a href="#" ng-click="logout()">Logout</a>
-        <p ng-show='loginMessage'>{{loginMessage}}</p>
-      </span>
-      <form href="#" ng-hide="auth.user">
-        <input type='text' ng-model='loginEmail' placeholder='Email' required>
-        <input type='password' ng-model='loginPassword' placeholder='Password' required>
-        <a href="#" ng-click="login()">
-          Login
-        </a>
-        <p ng-show='loginMessage'>{{loginMessage}}</p>
-      </form>
-    </div>
+  <body>
+    <nav ng-include="'navbar.html'"></nav>
+    <div id='content'>
+
+      <div id='login' ng-controller='loginController'>
+
+        <span ng-show='auth.user'>
+          {{auth.user.email}} | <a href="#" ng-click="logout()">Logout</a>
+          <p ng-show='loginMessage'>{{loginMessage}}</p>
+        </span>
+
+        <form href="#" ng-hide="auth.user">
+          <input type='text' ng-model='loginEmail' placeholder='Email' required>
+          <input type='password' ng-model='loginPassword' placeholder='Password' required>
+          <a href="#" ng-click="login()">
+            Login
+          </a>
+          <p ng-show='loginMessage'>{{loginMessage}}</p>
+        </form>
+
+      </div>
 
 
-    <div id='quotesDiv' ng-controller='quoteController'>
-      <div ng-repeat='quote in quotes'>Quote: {{quote.text}}</div>
+      <div id='quotesDiv' ng-controller='quoteController'>
+        <div ng-show='auth.user' ng-include=" 'account.html' "></div>
+        <div ng-hide='auth.user'> Not logged in. </div>
+      </div>
     </div>
   </body>
 </html>
