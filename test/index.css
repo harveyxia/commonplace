@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    background-color: #f2f3f7;
 }
 
 a {
@@ -10,7 +11,7 @@ nav {
     font-family: 'Raleway', sans-serif;
     /*font-weight: 300;*/
     color: #CCC;
-    background-color: rgb(45, 51, 57);
+    background-color: #292d33;
     -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
     display: block;
@@ -40,11 +41,31 @@ nav ul li {
     color: #CCC;
 }
 
+#logo:hover {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: #fffde9; /* Old browsers */
+    background-image: -moz-linear-gradient(45deg,  #fffde9 0%, #ffe627 100%); /* FF3.6+ */
+    background-image: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#fffde9), color-stop(100%,#ffe627)); /* Chrome,Safari4+ */
+    background-image: -webkit-linear-gradient(45deg,  #fffde9 0%,#ffe627 100%); /* Chrome10+,Safari5.1+ */
+    background-image: -o-linear-gradient(45deg,  #fffde9 0%,#ffe627 100%); /* Opera 11.10+ */
+    background-image: -ms-linear-gradient(45deg,  #fffde9 0%,#ffe627 100%); /* IE10+ */
+    background-image: linear-gradient(45deg,  #fffde9 0%,#ffe627 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fffde9', endColorstr='#ffe627',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+}
+
 nav > ul > li > a {
     border: 2px solid #CCC;
     border-radius: 4px;
     padding: 5px 7px;
     color: #CCC;
+    transition: color 0.1s, border 0.1s;
+}
+
+nav > ul > li > a:hover {
+    border: 2px solid #00ACE9;
+    color: #00ACE9;
 }
 
 /*.view-animate-container {
