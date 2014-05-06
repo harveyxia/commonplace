@@ -1,7 +1,13 @@
 var dataRef = new Firebase('https://popping-fire-7822.firebaseio.com');
-var app = angular.module('app', ['firebase']);
+var app = angular.module('app', ['ngRoute','firebase']);
 
-
+app.config(function ($routeProvider) {
+  $routeProvider.when('/account',  {
+      templateUrl: 'account.html',
+      controller: 'loginController'
+    }
+    )
+});
 
 
 // SimpleLogin
