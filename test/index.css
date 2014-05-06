@@ -31,8 +31,8 @@ nav ul li {
 }
 
 #logo {
-    font-family: 'Sorts Mill Goudy', serif;
-    font-size: 30px
+    /*font-family: 'Sorts Mill Goudy', serif;*/
+    font-size: 30px;
     float: left;
     line-height: 29px;
 }
