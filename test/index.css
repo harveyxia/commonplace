@@ -68,7 +68,21 @@ nav > ul > li > a:hover {
     color: #00ACE9;
 }
 
+form {
+  padding: 10px;
+  width: 300px;
+  background-color: #00ACE9;
+  position: relative;
+  height: 400px;
+}
+
 form ul {
+  position:absolute;
+      left:0;
+      right:0;
+      margin-left:auto;
+      margin-right:auto;
+  padding: 0px;
   list-style-type: none;
 }
 
@@ -78,6 +92,7 @@ form ul li label {
 
 form ul li input {
   display: block;
+  width: 90%;
 }
 
 /*.view-animate-container {
