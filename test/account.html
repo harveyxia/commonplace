@@ -13,9 +13,7 @@
       <label for='login-password'>Email Address</label>
       <input id='login-password' type='password' ng-model='loginPassword' tabindex="1" placeholder='Password' required>
     </li>
-    <a href='javaScript:void(0);' ng-click="login()">
-      Login
-    </a>
+    <a href='javaScript:void(0);' class="button button-block button-rounded button-flat-primary" ng-click="login()">Login</a>
   </ul>
   <p ng-show='loginMessage'>{{loginMessage}}</p>
 </form>
