@@ -1,5 +1,5 @@
 var dataRef = new Firebase('https://popping-fire-7822.firebaseio.com');
-var app = angular.module('app', ['ngRoute','firebase', 'ngAnimate']);
+var app = angular.module('app', ['ngRoute','firebase', 'ngAnimate', 'waitForAuth']);
 
 app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
   $routeProvider.when('/',  {templateUrl: 'home.html', controller: '' });
@@ -10,10 +10,13 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 }]);
 
 // views controller
-app.controller('viewsController', ['$scope', '$location',
-  function($scope, $location) {
+app.controller('viewsController', ['$scope', '$location', 'waitForAuth',
+  function($scope, $location, waitForAuth) {
+    console.log(waitForAuth);
     $scope.changeView = function(view) {
-      $location.path(view);
+      waitForAuth.then( function() {
+        $location.path(view)
+      });
     };
   }]);
 
