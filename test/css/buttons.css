@@ -461,7 +461,7 @@ button.button:disabled {
   -moz-transition-duration: 0.3s;
   -o-transition-duration: 0.3s;
   transition-duration: 0.3s;
-  background: #00a1cb;
+  background: #3498E4;
   color: white;
   text-shadow: none;
   border: none; }
