@@ -10,13 +10,10 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 }]);
 
 // views controller
-app.controller('viewsController', ['$scope', '$location', 'waitForAuth',
-  function($scope, $location, waitForAuth) {
-    console.log(waitForAuth);
+app.controller('viewsController', ['$scope', '$location',
+  function($scope, $location) {
     $scope.changeView = function(view) {
-      waitForAuth.then( function() {
-        $location.path(view)
-      });
+      $location.path(view)
     };
   }]);
 
