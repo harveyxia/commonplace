@@ -63,19 +63,21 @@
 
 .quotes {
   height: 100%;
-  margin: 0 100px;
+  margin: 0 120px;
   padding-top: 40px;
 }
 
 blockquote {
   quotes: "\201C""\201D";
   padding: 0.5em 10px;
+  text-indent: -53px;
+  border-left: 3px solid #ccc;
 }
 
 blockquote:before {
   content: open-quote;
   font-size: 4em;
-  line-height: 0.4em;
-  vertical-align: -0.2em;
+  line-height: 0.1px;
+  vertical-align: -0.4em;
   margin-right: 0.25em;
 }
