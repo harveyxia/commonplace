@@ -61,9 +61,9 @@ app.controller('accountController', ['UserService', '$scope', '$firebase', '$fir
 
     $scope.logout = function() {
       $scope.auth.$logout();
-      UserService.user = user;
       $scope.quotes = null;
       $scope.loginForm = true;
+      console.log('poo')
     };
 
     var getQuotes = function(user) {

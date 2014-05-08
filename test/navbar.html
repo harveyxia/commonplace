@@ -4,13 +4,13 @@
 
   <li ng-controller='accountController'>
     <a href='javaScript:void(0);' ng-click="changeView('/account')">
-      account  <span class='caret'></span>
+      account  <span ng-show='auth.user' class='caret'></span>
     </a>
     &nbsp
-      <div>
+      <div ng-show='auth.user'>
         <ul>
           <li><a href='javaScript:void(0);'>settings</a></li>
-          <li ng-show='auth.user'><a ng-click='logout()' href='javaScript:void(0);'>logout</a></li>
+          <li><a ng-click='logout()' href='javaScript:void(0);'>logout</a></li>
         </ul>
       </div>
     </a>
