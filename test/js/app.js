@@ -1,21 +1,33 @@
 var dataRef = new Firebase('https://popping-fire-7822.firebaseio.com');
 var app = angular.module('app', ['ngRoute','firebase', 'ngAnimate']);
 
+// routing
 app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
   $routeProvider.when('/',  {templateUrl: 'home.html', controller: '' });
   $routeProvider.when('/account',  {templateUrl: 'account.html', controller: 'accountController'});
   $routeProvider.when('/contact',  {templateUrl: 'contact.html', controller: ''});
-
-  // $locationProvider.html5Mode(true); // remove '#' from URLs
 }]);
+
+// getCurrentUser wrapper
+app.factory('getCurrentUser', ['$scope', '$firebaseSimpleLogin',
+  function($scope, $firebaseSimpleLogin) {
+    $scope.auth = $firebaseSimpleLogin(dataRef);
+
+    return function() {
+      $scope.auth.$getCurrentUser().then(function(user) {
+        return user;
+      });
+    };
+  }
+]);
 
 // views controller
 app.controller('viewsController', ['$scope', '$location',
   function($scope, $location) {
     $scope.changeView = function(view) {
       $location.path(view)
-    };
-  }]);
+  };
+}]);
 
 
 // account controller
@@ -26,17 +38,17 @@ app.controller('accountController', ['$rootScope', '$scope', '$firebase', '$fire
 
     // Wait until content loads, and user loads, before loading content
     $scope.$watch('$viewContentLoaded', function() {
-        $scope.auth.$getCurrentUser().then(function(user) {
-          if (user) {
-            getQuotes(user);
-            $scope.loginForm = false;
-          } else {
-            $scope.loginForm = true;
-          }
-        }, function(error) {
-          console.log(error);
-        });
+      $scope.auth.$getCurrentUser().then(function(user) {
+        if (user) {
+          getQuotes(user);
+          $scope.loginForm = false;
+        } else {
+          $scope.loginForm = true;
+        }
+      }, function(error) {
+        console.log(error);
       });
+    });
 
     $scope.login = function() {
       $scope.auth.$login('password', {
