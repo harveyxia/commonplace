@@ -33,6 +33,7 @@ body {
 .content {
   font-size: 16px;
   height: 100%;
+  padding-top: 54px;
 }
 
 /* remove default browser link styling */
