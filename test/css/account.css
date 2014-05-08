@@ -73,6 +73,10 @@
 }
 
 blockquote {
+  /* remove default browser padding */
+  -webkit-margin-after: 0;
+  width: 70%;
+  display: inline-block;
   quotes: "\201C""\201D";
   padding: 0em 10px;
   text-indent: -53px;
@@ -85,4 +89,23 @@ blockquote:before {
   line-height: 0.1px;
   vertical-align: -0.4em;
   margin-right: 0.25em;
+}
+
+.quote-info {
+  display: inline-block;
+  width: 19%;
+  font-family: Raleway, sans-serif;
+  font-size: 14px;
+  vertical-align: top;
+  top: 20px;
+  position: relative;
+}
+
+.quote-info a {
+  color: inherit;
+  -webkit-transition: color 0.2s;
+}
+
+.quote-info a:hover {
+  color: #00ACE9;
 }

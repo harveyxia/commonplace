@@ -79,7 +79,12 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
 
     $scope.getTime = function(time) {
       var date = new Date(time);
-      return date.toString();
+      return date.toLocaleDateString();
+    };
+
+    $scope.getDomain = function(url) {
+      var domain = new URL(url).hostname;
+      return domain;
     };
 
     var getQuotes = function(user) {
