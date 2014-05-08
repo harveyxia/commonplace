@@ -35,7 +35,6 @@ app.controller('accountController', ['UserService', '$scope', '$firebase', '$fir
     $scope.$watch('$viewContentLoaded', function() {
       $scope.auth.$getCurrentUser().then(function (user) {
         UserService.user = user;
-        console.log(UserService.user);
         if (user) {
           getQuotes(user);
           $scope.loginForm = false;
