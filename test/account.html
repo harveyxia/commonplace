@@ -1,9 +1,7 @@
 <div ng-show='auth.user'>
-  <span>
-    {{auth.user.email}} | <a href='javaScript:void(0);' ng-click="logout()">Logout</a>
-  </span>
-
-  <div ng-repeat='quote in quotes'>Quote: {{quote.text}}</div>
+  <section id='commonplace'>
+    <div ng-repeat='quote in quotes'>Quote: {{quote.text}}</div>
+  </section>
 </div>
 
 <div ng-show="loginForm">
