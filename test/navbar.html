@@ -1,9 +1,10 @@
 <ul ng-controller='viewsController'>
   <a href='javaScript:void(0);' ng-click="changeView('/')" id='logo'>WordSpark</a>
   <li><a href='javaScript:void(0);' ng-click="changeView('/')" >home</a></li>
-  <li>
+
+  <li ng-controller='accountController'>
     <a href='javaScript:void(0);' ng-click="changeView('/account')">
-      account<span class='caret'></span>
+      account<span class='caret'></span></a>
       <div>
         <ul>
           <li><a href='javaScript:void(0);'>settings</a></li>
@@ -12,5 +13,6 @@
       </div>
     </a>
   </li>
+
   <li><a href='javaScript:void(0);' ng-click="changeView('/contact')">contact</a></li>
 </ul>

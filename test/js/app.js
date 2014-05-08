@@ -1,3 +1,4 @@
+// global reference to Firebase
 var dataRef = new Firebase('https://popping-fire-7822.firebaseio.com');
 var app = angular.module('app', ['ngRoute','firebase', 'ngAnimate']);
 
@@ -9,21 +10,15 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 }]);
 
 // getCurrentUser wrapper
-app.factory('getCurrentUser', ['$scope', '$firebaseSimpleLogin',
-  function($scope, $firebaseSimpleLogin) {
-    $scope.auth = $firebaseSimpleLogin(dataRef);
-
-    return function() {
-      $scope.auth.$getCurrentUser().then(function(user) {
-        return user;
-      });
-    };
-  }
-]);
+app.service('UserService', ['$firebaseSimpleLogin', function ($firebaseSimpleLogin) {
+    var user;
+    return user;
+  }]
+);
 
 // views controller
 app.controller('viewsController', ['$scope', '$location',
-  function($scope, $location) {
+  function ($scope, $location) {
     $scope.changeView = function(view) {
       $location.path(view)
   };
@@ -31,14 +26,16 @@ app.controller('viewsController', ['$scope', '$location',
 
 
 // account controller
-app.controller('accountController', ['$rootScope', '$scope', '$firebase', '$firebaseSimpleLogin',
-  function($rootScope, $scope, $firebase, $firebaseSimpleLogin) {
+app.controller('accountController', ['UserService', '$scope', '$firebase', '$firebaseSimpleLogin',
+  function (UserService, $scope, $firebase, $firebaseSimpleLogin) {
 
     $scope.auth = $firebaseSimpleLogin(dataRef);
 
     // Wait until content loads, and user loads, before loading content
     $scope.$watch('$viewContentLoaded', function() {
-      $scope.auth.$getCurrentUser().then(function(user) {
+      $scope.auth.$getCurrentUser().then(function (user) {
+        UserService.user = user;
+        console.log(UserService.user);
         if (user) {
           getQuotes(user);
           $scope.loginForm = false;
@@ -55,9 +52,9 @@ app.controller('accountController', ['$rootScope', '$scope', '$firebase', '$fire
           email: $scope.loginEmail,
           password: $scope.loginPassword
         }).then(function(user) {
+          UserService.user = user;
           getQuotes(user);
           $scope.loginForm = false;
-          
         }, function(error) {
           
         });
@@ -65,6 +62,7 @@ app.controller('accountController', ['$rootScope', '$scope', '$firebase', '$fire
 
     $scope.logout = function() {
       $scope.auth.$logout();
+      UserService.user = user;
       $scope.quotes = null;
       $scope.loginForm = true;
     };
