@@ -12,6 +12,7 @@ html {
 body {
   margin: 0;
   font-family: 'Raleway', sans-serif;
+  font-size: 16px;
   /*background-color: #f2f3f7;*/
 
   /* IE10 Consumer Preview */ 
@@ -38,6 +39,10 @@ body {
 /* remove default browser link styling */
 a {
     text-decoration: none;
+}
+
+input {
+  outline: none;
 }
 
 /*.view-animate-container {
