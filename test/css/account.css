@@ -67,12 +67,16 @@
   padding-top: 40px;
 }
 
+#quote {
+  margin-bottom: 50px;
+  
+}
+
 blockquote {
   quotes: "\201C""\201D";
   padding: 0em 10px;
   text-indent: -53px;
   border-left: 3px solid #ccc;
-  margin-bottom: 50px;
 }
 
 blockquote:before {

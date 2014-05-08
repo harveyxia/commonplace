@@ -11,6 +11,7 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 
 // getCurrentUser wrapper
 app.service('UserService', ['$rootScope', '$firebaseSimpleLogin', function ($rootScope, $firebaseSimpleLogin) {
+    // broadcast user state change to sync navbar and view account controllers
     this.update = function (val) {
       this.user = val;
       $rootScope.$broadcast('updated');
@@ -74,6 +75,11 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
       // $scope.loginForm = true;
       UserService.update(true);
       // console.log($scope.loginForm)
+    };
+
+    $scope.getTime = function(time) {
+      var date = new Date(time);
+      return date.toString();
     };
 
     var getQuotes = function(user) {
