@@ -10,9 +10,11 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 }]);
 
 // getCurrentUser wrapper
-app.service('UserService', ['$firebaseSimpleLogin', function ($firebaseSimpleLogin) {
-    var user;
-    return user;
+app.service('UserService', ['$rootScope', '$firebaseSimpleLogin', function ($rootScope, $firebaseSimpleLogin) {
+    this.update = function (val) {
+      this.user = val;
+      $rootScope.$broadcast('updated');
+    }
   }]
 );
 
@@ -26,13 +28,16 @@ app.controller('viewsController', ['$scope', '$location',
 
 
 // account controller
-app.controller('accountController', ['UserService', '$scope', '$firebase', '$firebaseSimpleLogin',
-  function (UserService, $scope, $firebase, $firebaseSimpleLogin) {
-
+app.controller('accountController', ['UserService', '$rootScope', '$scope', '$firebase', '$firebaseSimpleLogin',
+  function (UserService, $rootScope, $scope, $firebase, $firebaseSimpleLogin) {
     $scope.auth = $firebaseSimpleLogin(dataRef);
+    
+    // listen for when user logs in and out, syncs navbar and content ctrl instances
+    $scope.$on('updated', function () {
+      $scope.loginForm = UserService.user;
+    })
 
-    // Wait until content loads, and user loads, before loading content
-    $scope.$watch('$viewContentLoaded', function() {
+    var getCurrentUser = function() {
       $scope.auth.$getCurrentUser().then(function (user) {
         UserService.user = user;
         if (user) {
@@ -44,26 +49,31 @@ app.controller('accountController', ['UserService', '$scope', '$firebase', '$fir
       }, function(error) {
         console.log(error);
       });
-    });
+    };
+
+
+    // Wait until content loads, and user loads, before loading content
+    $scope.$watch('$viewContentLoaded', getCurrentUser());
 
     $scope.login = function() {
       $scope.auth.$login('password', {
           email: $scope.loginEmail,
           password: $scope.loginPassword
         }).then(function(user) {
-          UserService.user = user;
           getQuotes(user);
-          $scope.loginForm = false;
+          UserService.update(false);
         }, function(error) {
           
         });
     };
 
     $scope.logout = function() {
+      $rootScope.$broadcast('refresh');
       $scope.auth.$logout();
       $scope.quotes = null;
-      $scope.loginForm = true;
-      console.log('poo')
+      // $scope.loginForm = true;
+      UserService.update(true);
+      // console.log($scope.loginForm)
     };
 
     var getQuotes = function(user) {
