@@ -82,6 +82,7 @@
   transition: all .5s;
 }
 
+/* style placeholder text */
 #quote-area::-webkit-input-placeholder {
 
 }
@@ -92,12 +93,15 @@
 }
 
 .new-quote textarea:focus {
-  width: 130px;
+  width: 70%;
   padding-left: 50px;
   color: #000;
   background-color: #fff;
   border-color: #00ACE9;
   cursor: auto;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
 }
 
 .quotes {
