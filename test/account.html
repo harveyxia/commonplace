@@ -2,7 +2,7 @@
 <div ng-show='auth.user' class='commonplace'>
   <section class='quotes'>
     <form class='new-quote'>
-      <textarea id='quote-area' placeholder='    Add a quote...'></textarea>
+      <textarea onblur="$('textarea').height('30px')" id='quote-area' placeholder='    Add a quote...'></textarea>
     </form>
     <script src="js/utility.js"></script>
     <div id='quote' ng-repeat="quote in quotes|orderByPriority|orderBy:'-created_at'">

@@ -184,8 +184,3 @@ input::-webkit-search-decoration,
 input::-webkit-search-cancel-button {
   display: none; 
 }
-
-#search-date {
-  position: absolute;
-  left: 500px;
-}
