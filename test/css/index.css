@@ -45,6 +45,12 @@ input {
   outline: none;
 }
 
+/* remove default outline and bottom-right resizer */
+textarea {
+  outline: none;
+  resize: none;
+}
+
 /*.view-animate-container {
   position:relative;
   height:100px!important;

@@ -173,7 +173,7 @@ nav > ul > li > a:hover {
 .search input:focus {
   width: 130px;
   background-color: #fff;
-  border-color: #66CC75;
+  border-color: #00ACE9;
   
   -webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
   -moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
