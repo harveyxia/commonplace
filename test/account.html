@@ -1,5 +1,9 @@
+<!-- QUOTES -->
 <div ng-show='auth.user' class='commonplace'>
   <section class='quotes'>
+    <form class='new-quote'>
+      <input type='text' placeholder='Add a quote...'>
+    </form>
     <div id='quote' ng-repeat="quote in quotes|orderByPriority|orderBy:'-created_at'">
       <blockquote>{{quote.text}}</blockquote>
       <span class='quote-info'>
@@ -10,6 +14,7 @@
   </section>
 </div>
 
+<!-- LOGIN FORM -->
 <div ng-show="loginForm">
   <form class='login-form'>
     <ul>

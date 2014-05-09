@@ -156,7 +156,7 @@ nav > ul > li > a:hover {
   -webkit-box-sizing: content-box;
   font-family: inherit;
   font-size: 100%;
-  background: #ededed url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+  background: #ededed url(/images/search-icon.png) no-repeat 9px center;
   border: solid 1px #ccc;
   padding: 4px 10px 4px 32px;
   width: 55px;

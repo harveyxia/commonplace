@@ -61,6 +61,36 @@
   font-size: 18px;
 }
 
+.new-quote input {
+  background: #ededed url(/images/pen123.png) no-repeat 9px center;
+  border: solid 1px #ccc;
+  padding: 9px 10px 9px 27px;
+  width: 0px;
+  cursor: pointer;
+  
+  -webkit-border-radius: 10em;
+  -moz-border-radius: 10em;
+  border-radius: 10em;
+  
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  transition: all .5s;
+}
+
+.new-quote input:hover {
+  background-color: #f2f3f7;
+  border-color: #00ACE9;
+}
+
+.new-quote input:focus {
+  width: 130px;
+  padding-left: 32px;
+  color: #000;
+  background-color: #fff;
+  border-color: #00ACE9;
+  cursor: auto;
+}
+
 .quotes {
   height: 100%;
   margin: 0 120px;
@@ -69,7 +99,6 @@
 
 #quote {
   margin-bottom: 50px;
-  
 }
 
 blockquote {
