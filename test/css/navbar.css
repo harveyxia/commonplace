@@ -110,6 +110,9 @@ nav > ul > li > a > .caret {
     float: left;
     line-height: 29px;
     color: #CCC;
+    -webkit-transition: all .1s;
+    -moz-transition: all .1s;
+    transition: all .1s;
 }
 
 #logo:hover {
@@ -131,7 +134,9 @@ nav > ul > li > a {
     border-radius: 4px;
     padding: 7px 9px;
     color: #CCC;
-    transition: color 0.1s, border 0.1s;
+    -webkit-transition: all .1s;
+    -moz-transition: all .1s;
+    transition: all .1s;
 }
 
 nav > ul > li > a:hover {

@@ -1,6 +1,6 @@
 <div ng-show='auth.user' class='commonplace'>
   <section class='quotes'>
-    <div id='quote' ng-repeat='quote in quotes'>
+    <div id='quote' ng-repeat="quote in quotes|orderByPriority|orderBy:'-created_at'">
       <blockquote>{{quote.text}}</blockquote>
       <span class='quote-info'>
         {{getTime(quote.created_at)}} | <a href="{{quote.url}}">

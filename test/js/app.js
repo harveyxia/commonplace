@@ -91,6 +91,7 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
       var userRef = new Firebase('https://popping-fire-7822.firebaseio.com/users/' +
         user.uid + '/quotes');
       $scope.quotes = $firebase(userRef);
+      console.log($scope.quotes);
     };
   }
 ]);
