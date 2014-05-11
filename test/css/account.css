@@ -87,6 +87,7 @@
   font-size: 18px;
   height: 30px;
   line-height: 30px;
+  overflow: hidden; /* remove scrollbars */
 
   
   -webkit-border-radius: 10em;
