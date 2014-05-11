@@ -68,6 +68,18 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
         });
     };
 
+    // $scope.login = function() {
+    //   $scope.auth.$login('google', {
+    //     rememberMe: true,
+    //   }).then(function(user) {
+    //     getQuotes(user);
+    //     UserService.update(false);
+    //     window.postMessage({type: "auth_token", token: user.firebaseAuthToken}, "*");
+    //   }, function(error) {
+    //     console.log(error);
+    //   });
+    // };
+
     $scope.logout = function() {
       $rootScope.$broadcast('refresh');
       $scope.auth.$logout();
@@ -102,9 +114,6 @@ app.controller('homeController', ['$http', '$rootScope', '$scope', '$firebase', 
       .then(function(res) {
         var rand_index = Math.floor(Math.random()*res.data.length);
         $scope.exampleQuote = res.data[rand_index];
-        console.log(res.data.length)
-        console.log(res.data[rand_index]);
-        console.log(rand_index);
       });
   }
 ]);
