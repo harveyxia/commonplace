@@ -147,9 +147,9 @@ nav > ul > li > a:hover {
 
 .search {
   display: inline-block;
-  float: left;
+  /*float: left;
   position: relative;
-  left: 80px;
+  left: 80px;*/
 }
 
 .search input {
@@ -172,7 +172,7 @@ nav > ul > li > a:hover {
 }
 
 .search input:focus {
-  width: 130px;
+  width: 160px;
   background-color: #fff;
   border-color: #00ACE9;
   

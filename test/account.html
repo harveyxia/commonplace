@@ -4,8 +4,14 @@
     <form class='new-quote'>
       <textarea onblur="$('textarea').height('30px')" id='quote-area' placeholder='    Add a quote...'></textarea>
     </form>
+    <form class='search'>
+      <input ng-model='searchText' type='search' placeholder='keyword or date'>
+    </form>
+    {{searchText}}
     <script src="js/utility.js"></script>
-    <div id='quote' ng-repeat="quote in quotes|orderByPriority|orderBy:'-created_at'">
+
+    <div id='quote'
+      ng-repeat="quote in quotes|orderByPriority|orderBy:'-created_at'| filter:searchText">
       <blockquote>{{quote.text}}</blockquote>
       <span class='quote-info'>
         {{getTime(quote.created_at)}} | <a href="{{quote.url}}">
@@ -16,7 +22,7 @@
 </div>
 
 <!-- LOGIN FORM -->
-<div ng-show="loginForm">
+<div ng-show="loginForm" style="height: 100%;">
   <div class='login-wrapper'>
     <form class='login-form'>
       <ul>
