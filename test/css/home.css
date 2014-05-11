@@ -1,5 +1,6 @@
 .intro {
-    height: 700px;
+    /*height: 700px;*/
+    height: 100%;
 
     background: url(/images/journal5.jpg) no-repeat top left fixed; 
     -webkit-background-size: cover;
@@ -10,6 +11,7 @@
 
 .description {
     color: white;
+    font-family: 'Sorts Mill Goudy', serif;
     /* center horizontally */
     position: absolute;
     margin-left: auto;
@@ -31,6 +33,6 @@
 }
 
 #pitch {
-    font-size: 18px;
-    line-height: 2em;
+    font-size: 20px;
+    line-height: 1.6em;
 }
