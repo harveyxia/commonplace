@@ -4,7 +4,7 @@ var app = angular.module('app', ['ngRoute','firebase', 'ngAnimate']);
 
 // routing
 app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-  $routeProvider.when('/',  {templateUrl: 'home.html', controller: '' });
+  $routeProvider.when('/',  {templateUrl: 'home.html', controller: 'homeController' });
   $routeProvider.when('/account',  {templateUrl: 'account.html', controller: 'accountController'});
   $routeProvider.when('/contact',  {templateUrl: 'contact.html', controller: ''});
 }]);
@@ -92,5 +92,19 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
         user.uid + '/quotes');
       $scope.quotes = $firebase(userRef);
     };
+  }
+]);
+
+// home controller
+app.controller('homeController', ['$http', '$rootScope', '$scope', '$firebase', '$firebaseSimpleLogin',
+  function ($http, $rootScope, $scope, $firebase, $firebaseSimpleLogin) {
+    $http.get('quotes2.json')
+      .then(function(res) {
+        var rand_index = Math.floor(Math.random()*res.data.length);
+        $scope.exampleQuote = res.data[rand_index];
+        console.log(res.data.length)
+        console.log(res.data[rand_index]);
+        console.log(rand_index);
+      });
   }
 ]);

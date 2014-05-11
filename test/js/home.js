@@ -9,7 +9,3 @@ $(window).load(function() {
     parallax();
   });
 });
-
-var quotes = [
-    
-]
