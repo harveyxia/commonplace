@@ -32,7 +32,8 @@ app.controller('viewsController', ['$scope', '$location',
 app.controller('accountController', ['UserService', '$rootScope', '$scope', '$firebase', '$firebaseSimpleLogin',
   function (UserService, $rootScope, $scope, $firebase, $firebaseSimpleLogin) {
     $scope.auth = $firebaseSimpleLogin(dataRef);
-    
+    $scope.user = null;
+
     // listen for when user logs in and out, syncs navbar and content ctrl instances
     $scope.$on('updated', function () {
       $scope.loginForm = UserService.user;
@@ -42,6 +43,7 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
       $scope.auth.$getCurrentUser().then(function (user) {
         UserService.user = user;
         if (user) {
+          $scope.user = user;
           getQuotes(user);
           $scope.loginForm = false;
         } else {
@@ -104,6 +106,26 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
         user.uid + '/quotes');
       $scope.quotes = $firebase(userRef);
     };
+
+    $scope.submitQuote = function() {
+      if ($scope.newQuote) {
+        var url = 'https://popping-fire-7822.firebaseio.com/users/' +
+          $scope.user.uid + '/quotes';
+
+        var userRef = $firebase( new Firebase(url));
+
+        userRef.$add(
+          {text: $scope.newQuote,
+           url: '',
+           created_at: Date.now()}
+           ).then(function (ref) {
+          $scope.quoteMessage = 'Quote added!';
+        });
+      } else {
+        $scope.quoteMessage = 'Quote cannot be empty!';
+        console.log($scope.quoteMessage);
+      }
+    }
   }
 ]);
 
