@@ -70,12 +70,12 @@
 }
 
 .commonplace {
-  height: 100%;
   margin-left: auto;
   margin-right: auto;
   background-color: #f2f3f7;
   font-family: 'Sorts Mill Goudy', serif;
   font-size: 18px;
+  padding-bottom: 50px;
 }
 
 .quotes {
@@ -85,6 +85,7 @@
 
 #quote {
   margin-bottom: 50px;
+  position: relative;
 }
 
 blockquote {
@@ -112,18 +113,37 @@ blockquote:before {
   font-family: Raleway, sans-serif;
   font-size: 14px;
   vertical-align: top;
-  top: 20px;
-  position: relative;
+  top: 10px;
+  position: absolute;
+  height: 70%;
 }
 
 .quote-info a {
   color: inherit;
   -webkit-transition: color 0.2s;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  /*display: block;*/
 }
 
 .quote-info a:hover {
   color: #00ACE9;
 }
+
+.quote-info > span {
+  display: block;
+}
+
+.quote-url {
+  display: block;
+}
+
+.delete-quote {
+  display: inline-block;
+}
+
+/* *******************QUOTE FUNCTIONS ***************************/
 
 .quote-functions {
   display: block;

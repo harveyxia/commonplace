@@ -1,6 +1,8 @@
 <!-- QUOTES -->
 <div ng-show='auth.user' class='commonplace'>
+
   <section class='quotes'>
+
     <div class='quote-functions'>
       <form class='new-quote'>
         <textarea ng-model='newQuote' onblur="$('textarea').height('30px')" id='quote-area'
@@ -21,9 +23,12 @@
       <blockquote>{{quote.text}}</blockquote>
       <span class='quote-info'>
         {{getTime(quote.created_at)}} |
-          <a ng-if='quote.url' href="{{quote.url}}">
+          <a href="javascript:void(0)" class='delete-quote'>Delete</a>
+          <a class='quote-url' ng-if='quote.url' href="{{quote.url}}">
           {{getDomain(quote.url)}} </a>
-          <span ng-if='!quote.url'>added by me</span>
+          <span ng-if='!quote.url'>hand written</span>
+          
+
       </span>
     </div>
   </section>
