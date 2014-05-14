@@ -29,8 +29,8 @@ app.controller('viewsController', ['$scope', '$location',
 
 
 // account controller
-app.controller('accountController', ['UserService', '$rootScope', '$scope', '$firebase', '$firebaseSimpleLogin',
-  function (UserService, $rootScope, $scope, $firebase, $firebaseSimpleLogin) {
+app.controller('accountController', ['UserService', '$rootScope', '$scope', '$firebase', '$firebaseSimpleLogin', '$timeout',
+  function (UserService, $rootScope, $scope, $firebase, $firebaseSimpleLogin, $timeout) {
     $scope.auth = $firebaseSimpleLogin(dataRef);
     $scope.user = null;
 
@@ -119,11 +119,12 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
            url: '',
            created_at: Date.now()}
            ).then(function (ref) {
-          $scope.quoteMessage = 'Quote added!';
+            $scope.successMessage = 'Quote added!';
+            $timeout(function () { $scope.successMessage = ''; }, 3000);
         });
       } else {
-        $scope.quoteMessage = 'Quote cannot be empty!';
-        console.log($scope.quoteMessage);
+        $scope.failMessage = 'Quote cannot be empty!';
+        $timeout(function () { $scope.failMessage = ''; }, 3000);
       }
     }
   }

@@ -5,11 +5,13 @@
       <form class='new-quote'>
         <textarea ng-model='newQuote' onblur="$('textarea').height('30px')" id='quote-area'
           placeholder='    Add a quote...'></textarea>
-        <a ng-click='submitQuote()' id='submit-quote' href="javascript:void(0);" class='button button-block'>Submit</a> {{quoteMessage}}
+        <a ng-click='submitQuote()' id='submit-quote' href="javascript:void(0);" class='button button-block'>Submit</a>
       </form>
       <form class='search'>
         <input ng-model='searchText' type='search' placeholder='keyword'>
       </form>
+      <div class='successMessage' ng-if='successMessage'>{{successMessage}}</div>
+      <div class='failMessage' ng-if='failMessage'>{{failMessage}}</div>
 
       <script src="js/utility.js"></script>
     </div>

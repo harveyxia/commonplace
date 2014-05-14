@@ -237,3 +237,21 @@ input::-webkit-search-cancel-button {
   -moz-transition: all .5s;
   transition: all .5s;
 }
+
+.successMessage {
+  width: 120px;
+  padding: 5px;
+  border: 1px solid #2BC02B;
+  border-radius: 3px;
+  background-color: rgba(56, 197, 50, 0.26);
+  font-family: Raleway, sans-serif;
+}
+
+.failMessage {
+  width: 210px;
+  padding: 5px;
+  border: 1px solid #DA6060;
+  border-radius: 3px;
+  background-color: rgba(248, 119, 119, 0.26);
+  font-family: Raleway, sans-serif;
+}
