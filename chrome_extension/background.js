@@ -18,6 +18,7 @@ var auth = new FirebaseSimpleLogin(dataRef, function(error, usr) {
     chrome.extension.getViews()[0].alert(error)
     user = null;
   } else if (usr) {     // user authenticated with Firebase
+    console.log(usr);
     user = usr;
     var userURL = "https://popping-fire-7822.firebaseio.com/users/" + user.uid
     var quoteURL = userURL + '/quotes'
@@ -43,7 +44,18 @@ function addQuote(data) {
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if (request.text) {
-        sendResponse({farewell: request.text});
-        addQuote(request);
+      sendResponse({farewell: request.text});
+      addQuote(request);
     }
+    // google auth token from website
+    /* else if (request.type && (request.type == 'auth_token')) {
+      dataRef.auth(request.token, function(error, result) {
+        if (error) {
+          console.log("Login Failed!", error);
+        } else {
+          console.log("Login Succeeded!");
+          user = result.auth;
+        }
+      });
+    } */
   });
