@@ -110,7 +110,7 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
 // home controller
 app.controller('homeController', ['$http', '$rootScope', '$scope', '$firebase', '$firebaseSimpleLogin',
   function ($http, $rootScope, $scope, $firebase, $firebaseSimpleLogin) {
-    $http.get('quotes2.json')
+    $http.get('quotes.json')
       .then(function(res) {
         var rand_index = Math.floor(Math.random()*res.data.length);
         $scope.exampleQuote = res.data[rand_index];

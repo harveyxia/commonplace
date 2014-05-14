@@ -125,6 +125,12 @@ blockquote:before {
   color: #00ACE9;
 }
 
+.quote-functions {
+  display: block;
+  overflow: auto;
+  padding-bottom: 50px;
+}
+
 .search {
   display: inline-block;
   position: absolute;
@@ -198,6 +204,7 @@ input::-webkit-search-cancel-button {
 
 .new-quote {
   display: inline;
+  position: relative;
 }
 
 .new-quote textarea:hover {
@@ -215,4 +222,18 @@ input::-webkit-search-cancel-button {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
+}
+
+.new-quote textarea:focus ~ #submit-quote {
+  visibility: visible;
+  opacity: 1;
+}
+
+#submit-quote {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  transition: all .5s;
 }

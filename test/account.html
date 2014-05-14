@@ -1,14 +1,17 @@
 <!-- QUOTES -->
 <div ng-show='auth.user' class='commonplace'>
   <section class='quotes'>
-    <form class='new-quote'>
-      <textarea onblur="$('textarea').height('30px')" id='quote-area' placeholder='    Add a quote...'></textarea>
-    </form>
-    <form class='search'>
-      <input ng-model='searchText' type='search' placeholder='keyword'>
-    </form>
+    <div class='quote-functions'>
+      <form class='new-quote'>
+        <textarea onblur="$('textarea').height('30px')" id='quote-area' placeholder='    Add a quote...'></textarea>
+        <a id='submit-quote' href="javascript:void(0);" class='button button-block'>Submit</a>
+      </form>
+      <form class='search'>
+        <input ng-model='searchText' type='search' placeholder='keyword'>
+      </form>
 
-    <script src="js/utility.js"></script>
+      <script src="js/utility.js"></script>
+    </div>
 
     <div id='quote'
       ng-repeat="quote in quotes|orderByPriority|orderBy:'-created_at'| filter:searchText">
