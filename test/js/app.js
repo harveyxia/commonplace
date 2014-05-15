@@ -111,9 +111,7 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
       if ($scope.newQuote) {
         var url = 'https://popping-fire-7822.firebaseio.com/users/' +
           $scope.user.uid + '/quotes';
-
         var userRef = $firebase( new Firebase(url));
-
         userRef.$add(
           {text: $scope.newQuote,
            url: '',
@@ -121,12 +119,19 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
            ).then(function (ref) {
             $scope.successMessage = 'Quote added!';
             $timeout(function () { $scope.successMessage = ''; }, 3000);
-        });
+          });
       } else {
         $scope.failMessage = 'Quote cannot be empty!';
         $timeout(function () { $scope.failMessage = ''; }, 3000);
       }
     }
+
+    $scope.deleteQuote = function (key) {
+      var url = 'https://popping-fire-7822.firebaseio.com/users/' +
+        $scope.user.uid + '/quotes';
+      var userRef = $firebase( new Firebase(url));
+      userRef.$remove(key);
+    };
   }
 ]);
 

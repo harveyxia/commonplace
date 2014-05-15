@@ -76,6 +76,7 @@
   font-family: 'Sorts Mill Goudy', serif;
   font-size: 18px;
   padding-bottom: 50px;
+  /*height: 100%;*/
 }
 
 .quotes {
@@ -124,7 +125,7 @@ blockquote:before {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  /*display: block;*/
+  vertical-align: top;
 }
 
 .quote-info a:hover {
