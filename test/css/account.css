@@ -211,7 +211,7 @@ input::-webkit-search-cancel-button {
   display: none; 
 }
 
-.new-quote textarea {
+#quote-area {
   background: #ededed url(/images/pen123.png) no-repeat 12px center;
   border: solid 1px #ccc;
   padding: 9px 10px 9px 32px;
@@ -243,12 +243,12 @@ input::-webkit-search-cancel-button {
   position: relative;
 }
 
-.new-quote textarea:hover {
+#quote-area:hover {
   background-color: #f2f3f7;
   border-color: #00ACE9;
 }
 
-.new-quote textarea:focus {
+#quote-area:focus {
   width: 70%;
   padding-left: 50px;
   color: #000;
@@ -260,7 +260,7 @@ input::-webkit-search-cancel-button {
   border-radius: 3px;
 }
 
-.new-quote textarea:focus ~ #submit-quote {
+#quote-area:focus ~ #submit-quote {
   visibility: visible;
   opacity: 1;
 }

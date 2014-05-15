@@ -113,6 +113,7 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
            created_at: Date.now()}
            ).then(function (ref) {
             $scope.successMessage = 'Quote added!';
+            $('#quote-area').val('');
             $timeout(function () { $scope.successMessage = ''; }, 3000);
           });
       } else {
@@ -132,8 +133,8 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
       $('#' + key).attr('contenteditable', 'true');
       $('#' + key).focus();
       $('#' + key).blur(function () {
-        $('#' + key).attr('contenteditable', 'false');
-        var new_text = $('#' + key).html();
+        $(this).attr('contenteditable', 'false');
+        var new_text = $(this).html();
         quoteRef.$update({text: new_text});
       });
       // var quoteHtml = $('#' + key).html();

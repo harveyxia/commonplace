@@ -4,6 +4,9 @@ $(document).ready(function () {
         $(this).css('height', 'auto' );
         $(this).height( this.scrollHeight );
     });
+    $('#quote-area').blur(function () {
+        $(this).css('height', '30px');
+    });
     // $('.new-quote').find( 'textarea' ).keyup(function() {
     //     });
 });
