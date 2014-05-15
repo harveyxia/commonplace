@@ -18,14 +18,15 @@
       <script src="js/utility.js"></script>
     </div>
 
-    <div id='quote' ng-repeat="quote in quotes|orderByPriority|orderBy:'-created_at'| filter:searchText">
-      <blockquote>{{quote.text}}</blockquote>
+    <div class='quote' ng-repeat="quote in quotes|orderByPriority|orderBy:'-created_at'| filter:searchText">
+      <blockquote id={{quote.$id}}>{{quote.text}}</blockquote>
       <span class='quote-info'>
           {{getTime(quote.created_at)}} <br>
-          <a ng-click='deleteQuote(quote.$id)' href="javascript:void(0)" class='delete-quote'>Delete</a>
           <a class='quote-url' ng-if='quote.url' href="{{quote.url}}">
           {{getDomain(quote.url)}} </a>
           <span ng-if='!quote.url'>hand written</span>
+          <a ng-click='deleteQuote(quote.$id)' href="javascript:void(0)" class='delete-quote'>Delete</a> | 
+          <a ng-click='editQuote(quote.$id)' href="javascript:void(0)" class='edit-quote'>Edit</a>
       </span>
     </div>
   </section>

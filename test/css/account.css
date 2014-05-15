@@ -84,9 +84,19 @@
   padding-top: 40px;
 }
 
-#quote {
+.quote {
   margin-bottom: 50px;
   position: relative;
+}
+
+.quote textarea {
+  -webkit-margin-after: 0;
+  width: 70%;
+  display: inline-block;
+  quotes: "\201C""\201D";
+  padding: 0em 10px;
+  text-indent: -53px;
+  border-left: 3px solid #ccc;
 }
 
 blockquote {
@@ -117,6 +127,7 @@ blockquote:before {
   top: 10px;
   position: absolute;
   height: 70%;
+  line-height: 20px;
 }
 
 .quote-info a {

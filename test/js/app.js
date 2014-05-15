@@ -33,6 +33,8 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
   function (UserService, $rootScope, $scope, $firebase, $firebaseSimpleLogin, $timeout) {
     $scope.auth = $firebaseSimpleLogin(dataRef);
     $scope.user = null;
+    var url = '';
+    var userRef = null;
 
     // listen for when user logs in and out, syncs navbar and content ctrl instances
     $scope.$on('updated', function () {
@@ -44,7 +46,10 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
         UserService.user = user;
         if (user) {
           $scope.user = user;
-          getQuotes(user);
+          url = 'https://popping-fire-7822.firebaseio.com/users/' +
+                 $scope.user.uid + '/quotes';
+          userRef = $firebase( new Firebase(url) );
+          $scope.quotes = userRef;    // get the quotes
           $scope.loginForm = false;
         } else {
           $scope.loginForm = true;
@@ -53,7 +58,6 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
         console.log(error);
       });
     };
-
 
     // Wait until content loads, and user loads, before loading content
     $scope.$watch('$viewContentLoaded', getCurrentUser());
@@ -101,17 +105,8 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
       return domain;
     };
 
-    var getQuotes = function(user) {
-      var userRef = new Firebase('https://popping-fire-7822.firebaseio.com/users/' +
-        user.uid + '/quotes');
-      $scope.quotes = $firebase(userRef);
-    };
-
     $scope.submitQuote = function() {
       if ($scope.newQuote) {
-        var url = 'https://popping-fire-7822.firebaseio.com/users/' +
-          $scope.user.uid + '/quotes';
-        var userRef = $firebase( new Firebase(url));
         userRef.$add(
           {text: $scope.newQuote,
            url: '',
@@ -127,11 +122,20 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
     }
 
     $scope.deleteQuote = function (key) {
-      var url = 'https://popping-fire-7822.firebaseio.com/users/' +
-        $scope.user.uid + '/quotes';
-      var userRef = $firebase( new Firebase(url));
       userRef.$remove(key);
     };
+
+    $scope.editQuote = function (key) {
+      var quoteURL = url + '/' + key;
+      var quoteRef = $firebase( new Firebase(quoteURL) );
+
+      var quoteHtml = $('#' + key).html();
+      var editableText = $('<textarea />');
+      editableText.val(quoteHtml);
+      $('#' + key).replaceWith(editableText);
+
+      // quoteRef.$update({text: 'This has been updated'});
+    }
   }
 ]);
 
