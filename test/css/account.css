@@ -89,14 +89,11 @@
   position: relative;
 }
 
-.quote textarea {
-  -webkit-margin-after: 0;
-  width: 70%;
-  display: inline-block;
-  quotes: "\201C""\201D";
-  padding: 0em 10px;
-  text-indent: -53px;
-  border-left: 3px solid #ccc;
+.quote > blockquote[contenteditable='true'] {
+  outline:none; /*or outline-color:#FFFFFF; if the first doesn't work*/
+  border:1px solid #00ACE9;
+  -webkit-box-shadow: 0px 0px 4px 0px #00ACE9;
+  box-shadow: 0px 0px 4px 0px #00ACE9;
 }
 
 blockquote {
@@ -106,7 +103,7 @@ blockquote {
   display: inline-block;
   quotes: "\201C""\201D";
   padding: 0em 10px;
-  text-indent: -53px;
+  /*text-indent: -53px;*/
   border-left: 3px solid #ccc;
 }
 
@@ -116,6 +113,10 @@ blockquote:before {
   line-height: 0.1px;
   vertical-align: -0.4em;
   margin-right: 0.25em;
+  float: left;
+  position: relative;
+  left: -50px;
+  top: 30px;
 }
 
 .quote-info {

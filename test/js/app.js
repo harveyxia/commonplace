@@ -129,10 +129,16 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
       var quoteURL = url + '/' + key;
       var quoteRef = $firebase( new Firebase(quoteURL) );
 
-      var quoteHtml = $('#' + key).html();
-      var editableText = $('<textarea />');
-      editableText.val(quoteHtml);
-      $('#' + key).replaceWith(editableText);
+      $('#' + key).attr('contenteditable', 'true');
+      $('#' + key).focus();
+      $('#' + key).blur(function () {
+        $('#' + key).attr('contenteditable', 'false');
+      });
+      // var quoteHtml = $('#' + key).html();
+      // var editableText = $('<textarea />');
+      // editableText.val(quoteHtml);
+      // $('#' + key).replaceWith(editableText);
+      // editableText.focus();
 
       // quoteRef.$update({text: 'This has been updated'});
     }
