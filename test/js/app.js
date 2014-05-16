@@ -134,7 +134,7 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
       $('#' + key).focus();
       $('#' + key).blur(function () {
         $(this).attr('contenteditable', 'false');
-        var new_text = $(this).html();
+        var new_text = $(this).text();
         quoteRef.$update({text: new_text});
       });
       // var quoteHtml = $('#' + key).html();
