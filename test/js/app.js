@@ -67,7 +67,6 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
           email: $scope.loginEmail,
           password: $scope.loginPassword
         }).then(function(user) {
-          getQuotes(user);
           UserService.update(false);
         }, function(error) {
           
