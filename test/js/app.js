@@ -65,15 +65,27 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
     $scope.login = function() {
       $scope.auth.$login('password', {
           email: $scope.loginEmail,
-          password: $scope.loginPassword
+          password: $scope.loginPassword,
+          rememberMe: true
         }).then(function(user) {
           UserService.update(false);
           // $scope.user = user;
           getCurrentUser();
         }, function(error) {
-          
+          console.log(error);
         });
     };
+
+    $scope.createUser = function() {
+      $scope.auth.$createUser($scope.loginEmail, $scope.loginPassword)
+      .then(function(user) {
+          UserService.update(false);
+          // $scope.user = user;
+          getCurrentUser();
+        }, function(error) {
+          console.log(error);
+        });
+    }
 
     // $scope.login = function() {
     //   $scope.auth.$login('google', {
