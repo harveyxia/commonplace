@@ -151,13 +151,6 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
         var new_text = $(this).text();
         quoteRef.$update({text: new_text});
       });
-      // var quoteHtml = $('#' + key).html();
-      // var editableText = $('<textarea />');
-      // editableText.val(quoteHtml);
-      // $('#' + key).replaceWith(editableText);
-      // editableText.focus();
-
-      // quoteRef.$update({text: 'This has been updated'});
     }
   }
 ]);
