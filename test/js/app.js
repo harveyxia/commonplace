@@ -62,14 +62,15 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
     // Wait until content loads, and user loads, before loading content
     $scope.$watch('$viewContentLoaded', getCurrentUser());
 
-    $scope.login = function() {
+    $scope.login = function(email, password) {
       $scope.auth.$login('password', {
-          email: $scope.loginEmail,
-          password: $scope.loginPassword,
+          // email: $scope.loginEmail,
+          // password: $scope.loginPassword,
+          email: email,
+          password: password,
           rememberMe: true
         }).then(function(user) {
           UserService.update(false);
-          // $scope.user = user;
           getCurrentUser();
         }, function(error) {
           console.log(error);
@@ -80,7 +81,7 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
       $scope.auth.$createUser($scope.loginEmail, $scope.loginPassword)
       .then(function(user) {
           UserService.update(false);
-          // $scope.user = user;
+          $scope.login($scope.loginEmail, $scope.loginPassword);
           getCurrentUser();
         }, function(error) {
           console.log(error);
