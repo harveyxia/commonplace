@@ -1,9 +1,18 @@
 body {
   margin: 0;
+  font-family: Raleway, sans-serif;
+}
+
+header {
+  text-align: center;
+  font-size: 20px;
+  color: #CCC;
+  background-color: #292d33;
+  padding: 10px;
 }
 
 #container {
-  font-family: Raleway, sans-serif;
+  
   background-color: #f2f3f7;
   width: 300px;
 }

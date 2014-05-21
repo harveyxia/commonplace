@@ -20,8 +20,8 @@ var auth = chrome.extension.getBackgroundPage().FirebaseSimpleLogin(dataRef, fir
 
 function login() {
   console.log("login");
-  var email = document.getElementById("email").value;
-  var password = document.getElementById("password").value;
+  var email = document.getElementById("login-email").value;
+  var password = document.getElementById("login-password").value;
 
   if (!user) {
     auth.login('password', {
@@ -67,11 +67,25 @@ function logout() {
   auth.logout();
 }
 
-if (!user) {
-  $('#container').load("loginForm.html");
-  document.getElementById("login").addEventListener('click', login, false);
-  document.getElementById("signup").addEventListener('click', signup, false);
-} else {
-  $('#container').html("<button id='submit'> Logout </button>");
-  document.getElementById("submit").addEventListener('click', logout, false);
-}
+function init() {
+  if (!user) {
+    $('#container').load("loginForm.html", function () {
+      $("#login").click(function () {
+        login();
+        init();
+      });
+      $("#signup").click(function () {
+        signup();
+        init();
+      });  
+    });
+  } else {
+    $('#container').html("<a href='#' id='signout' class='signout button button-block button-rounded button-flat-caution'>Sign Out</a>");
+    $("#signout").click(function () {
+      logout();
+      init();
+    });
+  }
+};
+
+init();
