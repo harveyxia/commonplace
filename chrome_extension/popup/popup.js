@@ -68,10 +68,7 @@ function logout() {
 }
 
 if (!user) {
-  $('#container').html("Email: <input type='text' name='email' id='email'/>"+
-      "Password: <input type='password' name='password' id='password'/>"+
-      "<button id='login'> Login </button>"+
-      "<button id='signup'> Sign Up </button>");
+  $('#container').load("loginForm.html");
   document.getElementById("login").addEventListener('click', login, false);
   document.getElementById("signup").addEventListener('click', signup, false);
 } else {

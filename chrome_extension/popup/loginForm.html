@@ -1,0 +1,14 @@
+<form class='login-form'>
+  <ul>
+    <li>
+      <label for='login-email'>Email Address</label>
+      <input id='login-email' ng-model='loginEmail' placeholder='Email' tabindex="1" required>
+    </li>
+    <li>
+      <label for='login-password'>Password</label>
+      <input id='login-password' type='password' ng-model='loginPassword' tabindex="1" placeholder='Password' required>
+    </li>
+    <a href='javaScript:void(0);' id='login' class="button button-block button-rounded button-flat-primary" ng-click="login(loginEmail, loginPassword)">Login</a>
+    <a href='javaScript:void(0);' id='signup' class="signup button button-block button-rounded button-flat-action" ng-click="createUser()">Sign Up</a>
+  </ul>
+</form>
