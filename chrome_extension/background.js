@@ -15,7 +15,8 @@ var quoteRef;
 var auth = new FirebaseSimpleLogin(dataRef, function(error, usr) {
   if (error) {          // an error occurred while attempting login
     console.log(error);
-    chrome.extension.getViews()[0].alert(error)
+    chrome.runtime.sendMessage({error: error});
+    // chrome.extension.getViews()[0].alert(error);
     user = null;
   } else if (usr) {     // user authenticated with Firebase
     console.log(usr);
@@ -24,9 +25,12 @@ var auth = new FirebaseSimpleLogin(dataRef, function(error, usr) {
     var quoteURL = userURL + '/quotes'
     userRef = new Firebase(userURL);
     quoteRef = new Firebase(quoteURL);
+    chrome.runtime.sendMessage({loggedIn: ''});
+    // chrome.extension.getViews()[0].loadLogout;
   } else {              // user is logged out
     user = null;
     console.log('logged out');
+    chrome.runtime.sendMessage({loggedOut: ''});
   }
 });
 

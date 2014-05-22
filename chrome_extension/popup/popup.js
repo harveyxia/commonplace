@@ -1,14 +1,17 @@
 function firebaseCallback(error, usr) {
   if (error) {          // an error occurred while attempting login
-    console.log("error"); console.log(error);
+    console.log(error);
     user = null;
+    loadLogin();        // load Login form
   } else if (usr) {     // user authenticated with Firebase
     user = usr;
     console.log(user.firebaseAuthToken);
     console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
+    loadLogout();       // load Logout form
   } else {              // user is logged out
     user = null;
     console.log('logged out');
+    loadLogin();        // load Login form
   }
 };
 
@@ -28,11 +31,8 @@ function login() {
       email: email,
       password: password,
       rememberMe: true,
-      debug: true
+      // debug: true
     });
-    // auth.login('google', {
-    //   rememberMe: true,
-    // });
   }
 }
 
@@ -67,25 +67,24 @@ function logout() {
   auth.logout();
 }
 
-function init() {
-  if (!user) {
-    $('#container').load("loginForm.html", function () {
-      $("#login").click(function () {
-        login();
-        init();
-      });
-      $("#signup").click(function () {
-        signup();
-        init();
-      });  
+function loadLogin() {
+  $('#container').load("loginForm.html", function () {
+    $("#login").click(function () {
+      login();
+      // loadLogout();
     });
-  } else {
-    $('#container').html("<a href='#' id='signout' class='signout button button-block button-rounded button-flat-caution'>Sign Out</a>");
-    $("#signout").click(function () {
-      logout();
-      init();
+    $("#signup").click(function () {
+      signup();
+      login();
+      loadLogout();
     });
-  }
-};
+  });
+}
 
-init();
+function loadLogout() {
+  $('#container').html("<a href='#' id='signout' class='signout button button-block button-rounded button-flat-caution'>Sign Out</a>");
+  $("#signout").click(function () {
+    logout();
+    loadLogin();
+  });
+}
