@@ -91,6 +91,7 @@ function loadLogout() {
   });
 }
 
+// strips junk from Firebase error message
 function getError(error) {
   var index = error.lastIndexOf(': ') + 2;
   return error.substring(index)
