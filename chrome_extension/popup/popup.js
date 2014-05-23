@@ -57,7 +57,8 @@ function signup() {
       userURL = "https://popping-fire-7822.firebaseio.com" + "/users/" + user.uid
       initUser(userURL, email);
     } else {
-      console.log(error);
+      var errorMessage = getError(error.message);
+      loadLogin(errorMessage);        // load Login form
     }
   });
 }
@@ -76,7 +77,7 @@ function loadLogin(error) {
     });
     if (error) {
       $(document).ready( function() {
-        $('#container').append("<p>" + error + "</p>");
+        $('#container').append("<p class='error-message'>" + error + "</p>");
       });
     }
   });
