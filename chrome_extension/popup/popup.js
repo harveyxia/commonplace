@@ -74,11 +74,13 @@ function loadLogin(error) {
     $("#signup").click(function () {
       signup();
     });
+    if (error) {
+      $(document).ready( function() {
+        $('#container').append("<p>" + error + "</p>");
+      });
+    }
   });
-  if (error) {
-    $('#container').html("");
-    alert(error);
-  }
+  
 }
 
 function loadLogout() {
