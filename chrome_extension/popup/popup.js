@@ -2,7 +2,8 @@ function firebaseCallback(error, usr) {
   if (error) {          // an error occurred while attempting login
     console.log(error);
     user = null;
-    loadLogin();        // load Login form
+    var errorMessage = getError(error.message);
+    loadLogin(errorMessage);        // load Login form
   } else if (usr) {     // user authenticated with Firebase
     user = usr;
     console.log(user.firebaseAuthToken);
@@ -10,8 +11,7 @@ function firebaseCallback(error, usr) {
     loadLogout();       // load Logout form
   } else {              // user is logged out
     user = null;
-    console.log('logged out');
-    loadLogin();        // load Login form
+    loadLogin(null);        // load Login form
   }
 };
 
@@ -22,9 +22,8 @@ var user = chrome.extension.getBackgroundPage().user;
 var auth = chrome.extension.getBackgroundPage().FirebaseSimpleLogin(dataRef, firebaseCallback);
 
 function login() {
-  console.log("login");
-  var email = document.getElementById("login-email").value;
-  var password = document.getElementById("login-password").value;
+  var email = $("#login-email").val();
+  var password = $("#login-password").val();
 
   if (!user) {
     auth.login('password', {
@@ -42,8 +41,8 @@ function initUser(url, email) {
 }
 
 function signup() {
-  var email = document.getElementById("email").value;
-  var password = document.getElementById("password").value;
+  var email = $("#login-email").val();
+  var password = $("#login-password").val();
 
   auth.createUser(email, password,
     function(error, user) {
@@ -67,24 +66,29 @@ function logout() {
   auth.logout();
 }
 
-function loadLogin() {
+function loadLogin(error) {
   $('#container').load("loginForm.html", function () {
     $("#login").click(function () {
       login();
-      // loadLogout();
     });
     $("#signup").click(function () {
       signup();
-      login();
-      loadLogout();
     });
   });
+  if (error) {
+    $('#container').html("");
+    alert(error);
+  }
 }
 
 function loadLogout() {
   $('#container').html("<a href='#' id='signout' class='signout button button-block button-rounded button-flat-caution'>Sign Out</a>");
   $("#signout").click(function () {
     logout();
-    loadLogin();
   });
+}
+
+function getError(error) {
+  var index = error.lastIndexOf(': ') + 2;
+  return error.substring(index)
 }
