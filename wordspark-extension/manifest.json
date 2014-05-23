@@ -11,7 +11,6 @@
   },
 
   "background": {
-    // important: load firebase first
       "scripts": ["firebase.js",
                   "firebase-simple-login.js",
                   "background.js"],
